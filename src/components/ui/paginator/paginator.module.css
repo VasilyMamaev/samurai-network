@@ -1,0 +1,21 @@
+.pageBtn {
+  border: none;
+  margin: 10px;
+  border-radius: 6px;
+  background-color: #FFFADB;
+  color: #213152;
+  width: 68px;
+  height: 26px;
+  text-align: center;
+}
+
+.unselectedPage {
+  font-weight: lighter;
+  color: #fff;
+}
+
+.selectedPage {
+  font-weight: bold;
+  color: #FFFADB;
+  text-decoration: underline;
+}

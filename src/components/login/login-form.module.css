@@ -1,0 +1,62 @@
+.Login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  background: #FF347B;
+}
+
+.flamingo {
+  background-image: url(../../assets/images/login-background.jpg);
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.LoginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LoginForm form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #213152;
+  width: 337px;
+  height: 325px;
+  padding: 32px 25px;
+  box-shadow: 7px 7px 17px rgba(0, 0, 0, 0.25);
+}
+
+.LoginForm input {
+  width: 287px;
+  height: 59px;
+}
+
+.LoginForm .rememberMe input {
+  width: auto;
+  height: auto;
+}
+
+.rememberMe {
+  display: flex;
+  flex-direction: row;
+  width: 287px;
+  color: white;
+  justify-content: flex-end;
+}
+
+.LoginForm button {
+  width: 287px;
+  height: 59px;
+  background: #5ADDFE;
+  border: none;
+  box-shadow: 0px 5px 5px rgba(96, 92, 92, 0.25);
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 26px;;
+}

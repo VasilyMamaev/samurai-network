@@ -1,0 +1,14 @@
+.Dialogs {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.DialogsItems {
+  display: grid;
+  grid-template-columns: 1fr;
+
+}
+
+.Chat {
+  display: grid;
+}

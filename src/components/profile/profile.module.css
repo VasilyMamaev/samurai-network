@@ -1,0 +1,27 @@
+.Profile {
+  display: grid;
+  color: aliceblue;
+}
+
+.Profile img {
+  width: 200px;
+}
+
+.userPosts {
+  background-color: #CBF7FF;
+  color: black;
+  border-radius: 10px;
+  padding: 21px;
+  margin-top: 20px;
+}
+
+.userPosts img {
+  width: 20px;
+  height: 16px;
+}
+
+.blueLine {
+  display: block;
+  border: 2px solid #71E7FE;
+  margin: 20px;
+}

@@ -1,0 +1,48 @@
+.UserInfo {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.UserInfoAvatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.UserInfoAvatar img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.UserInfoAvatar input {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.UserInfoAvatar label {
+  margin-top: 6px;
+  width: 80%;
+  text-align: center;
+  color: #FFFADB;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.UserContacts {
+  display: flex;
+  padding-left: 10px;
+  flex-direction: column;
+}
+
+.UserContacts :only-child{
+  margin-bottom: 20px;
+}
+
+.UserContacts strong {
+  color: #71E7FE;
+  font-size: 21px;
+}

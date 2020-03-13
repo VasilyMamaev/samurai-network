@@ -1,0 +1,9 @@
+.Users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.usersList {
+  align-self: start;
+}
