@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/samurai-network/static/css/main.a5a0c3fe.chunk.css",
+    "main.js": "/samurai-network/static/js/main.1a221d97.chunk.js",
+    "main.js.map": "/samurai-network/static/js/main.1a221d97.chunk.js.map",
+    "runtime-main.js": "/samurai-network/static/js/runtime-main.280a9cb8.js",
+    "runtime-main.js.map": "/samurai-network/static/js/runtime-main.280a9cb8.js.map",
+    "static/js/2.efbafce4.chunk.js": "/samurai-network/static/js/2.efbafce4.chunk.js",
+    "static/js/2.efbafce4.chunk.js.map": "/samurai-network/static/js/2.efbafce4.chunk.js.map",
+    "index.html": "/samurai-network/index.html",
+    "precache-manifest.b67b7bb12d8c5bc29b028fd9444b22a5.js": "/samurai-network/precache-manifest.b67b7bb12d8c5bc29b028fd9444b22a5.js",
+    "service-worker.js": "/samurai-network/service-worker.js",
+    "static/css/main.a5a0c3fe.chunk.css.map": "/samurai-network/static/css/main.a5a0c3fe.chunk.css.map",
+    "static/js/2.efbafce4.chunk.js.LICENSE": "/samurai-network/static/js/2.efbafce4.chunk.js.LICENSE",
+    "static/media/facebook-disabled.svg": "/samurai-network/static/media/facebook-disabled.7ec022a2.svg",
+    "static/media/facebook.svg": "/samurai-network/static/media/facebook.54ec0b82.svg",
+    "static/media/github-disabled.svg": "/samurai-network/static/media/github-disabled.1601870a.svg",
+    "static/media/github.svg": "/samurai-network/static/media/github.26fa076c.svg",
+    "static/media/instagram-disabled.svg": "/samurai-network/static/media/instagram-disabled.be5be7c0.svg",
+    "static/media/instagram.svg": "/samurai-network/static/media/instagram.c733f4a0.svg",
+    "static/media/loading-cube.svg": "/samurai-network/static/media/loading-cube.b5193403.svg",
+    "static/media/login-form.module.css": "/samurai-network/static/media/login-background.42f0c337.jpg",
+    "static/media/mainLink-disabled.svg": "/samurai-network/static/media/mainLink-disabled.93b997c6.svg",
+    "static/media/mainLink.svg": "/samurai-network/static/media/mainLink.b06bcb57.svg",
+    "static/media/no-avatar-img.jpg": "/samurai-network/static/media/no-avatar-img.ae70a063.jpg",
+    "static/media/post-like.svg": "/samurai-network/static/media/post-like.92c49125.svg",
+    "static/media/twitter-disabled.svg": "/samurai-network/static/media/twitter-disabled.2ce51e1e.svg",
+    "static/media/twitter.svg": "/samurai-network/static/media/twitter.732c2504.svg",
+    "static/media/vk-disabled.svg": "/samurai-network/static/media/vk-disabled.db0605cc.svg",
+    "static/media/vk.svg": "/samurai-network/static/media/vk.c0768a94.svg",
+    "static/media/website-disabled.svg": "/samurai-network/static/media/website-disabled.7056f384.svg",
+    "static/media/website.svg": "/samurai-network/static/media/website.85988b1b.svg",
+    "static/media/youtube-disabled.svg": "/samurai-network/static/media/youtube-disabled.43867199.svg",
+    "static/media/youtube.svg": "/samurai-network/static/media/youtube.4f7e55d6.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.280a9cb8.js",
+    "static/js/2.efbafce4.chunk.js",
+    "static/css/main.a5a0c3fe.chunk.css",
+    "static/js/main.1a221d97.chunk.js"
+  ]
+}
