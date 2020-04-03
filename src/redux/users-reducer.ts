@@ -1,3 +1,4 @@
+import { userType } from './../types/types';
 import { usersAPI } from "../api/api"
 
 const FOLLOW = 'FOLLOW'
@@ -7,28 +8,18 @@ const IS_FETCHING_TOGGLER = 'IS_FETCHING_TOGGLER'
 const IS_FOLLOW_TOGGLER = 'IS_FOLLOW_TOGGLER'
 
 const initialState = {
-  users: [
-    // {
-    //   "name": "MakeConstNotVar",
-    //   "id": 5927,
-    //   "uniqueUrlName": null,
-    //   "photos": {
-    //     "small": null,
-    //     "large": null
-    //   },
-    //   "status": null,
-    //   "followed": false
-    // }
-  ],
+  users: [] as Array<userType>,
   totalCount: 0,
   usersAtPageCount: 6,
   currentPage: 1,
   currentPagePortion: 1,
-  isFetching: false,
-  followInProgress: []
+  isFetching: false ,
+  followInProgress: [] as Array<number> // array of users id's
 }
 
-let usersReducer = (state = initialState, action) => {
+type stateType = typeof initialState
+
+let usersReducer = (state = initialState, action: any): stateType => {
   switch (action.type) {
     case 'ADD_PAGE':
       return {
@@ -68,18 +59,62 @@ let usersReducer = (state = initialState, action) => {
   }
 }
 
-export const followAC = (userId, follow) => ({type: FOLLOW, follow, id: userId})
-export const changePageActionCreator = (page, pagePortion) => ({type: ADD_PAGE, page, pagePortion})
-export const changePageUsersActionCreator = (users, totalCount) => ({type: CHANGE_PAGE_USERS, users, totalCount})
-export const isFetchingTogglerAC = (isFetching) => ({type: IS_FETCHING_TOGGLER, isFetching})
-export const isFollowTogglerAC = (isFetching, userId) => ({type: IS_FOLLOW_TOGGLER, isFetching, userId})
+type followACType = {
+  type: typeof FOLLOW
+  id: number
+  follow: boolean
+}
+export const followAC = (userId: number, follow: boolean): followACType => ({
+  type: FOLLOW,
+  follow,
+  id: userId
+})
+
+type changePageACType = {
+  type: typeof ADD_PAGE
+  page: number
+  pagePortion: number
+}
+export const changePageAC = (page: number, pagePortion: number): changePageACType => ({
+  type: ADD_PAGE,
+  page,
+  pagePortion
+})
+
+type changePageUsersACType = {
+  type: typeof CHANGE_PAGE_USERS
+  users: Array<userType>
+  totalCount: number
+}
+export const changePageUsersAC = (users: Array<userType>, totalCount: number): changePageUsersACType => ({
+  type: CHANGE_PAGE_USERS,
+  users,
+  totalCount
+})
+
+type isFetchingTogglerACType = {
+  type: typeof IS_FETCHING_TOGGLER
+  isFetching: boolean
+}
+export const isFetchingTogglerAC = (isFetching: boolean): isFetchingTogglerACType => ({type: IS_FETCHING_TOGGLER, isFetching})
+
+type isFollowTogglerACType = {
+  type: typeof IS_FOLLOW_TOGGLER
+  isFetching: boolean
+  userId: number
+}
+export const isFollowTogglerAC = (isFetching: boolean, userId: number): isFollowTogglerACType => ({
+  type: IS_FOLLOW_TOGGLER,
+  isFetching,
+  userId
+})
 
 export const getUsersTC = (usersAtPageCount, currentPage, pagePortion) => {
   return (dispatch) => {
     dispatch(isFetchingTogglerAC(true))
-    dispatch(changePageActionCreator(currentPage, pagePortion))
+    dispatch(changePageAC(currentPage, pagePortion))
     usersAPI.getUsers(usersAtPageCount, currentPage).then((data) => {
-      dispatch(changePageUsersActionCreator(data.items, data.totalCount))
+      dispatch(changePageUsersAC(data.items, data.totalCount))
       dispatch(isFetchingTogglerAC(false))
     })
   }

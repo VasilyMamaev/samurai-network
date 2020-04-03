@@ -1,5 +1,5 @@
 import Dialogs from './dialogs'
-import { updateMessageTextActionCreator, addMessageActionCreator } from '../../redux/dialogs-reducer'
+import { updateMessageTextActionCreator, addMessageAC } from '../../redux/dialogs-reducer'
 import { connect } from 'react-redux'
 import withUserAuth from '../../hoc/with-user-auth'
 import { compose } from 'redux'
@@ -18,7 +18,7 @@ let mapDispatchToProps = (dispatch) => {
       dispatch(updateMessageTextActionCreator(evt.target.value))
     },
     sendMessageHandler: (values) => {
-      dispatch(addMessageActionCreator(values.messageText))
+      dispatch(addMessageAC(values.messageText))
     }
   }
 } 
