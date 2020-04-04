@@ -2,7 +2,19 @@ import React from 'react'
 import classes from './user.module.css'
 import { NavLink } from 'react-router-dom'
 
-function User(props) {
+type PropsType = {
+  id: number
+  followHandler: (id: number, followed: boolean) => void
+  avatar: string
+  followed: boolean
+  followInProgress: Array<number>
+  name: string
+  userStatus: string | null
+  city: string
+  country: string
+}
+
+const User: React.FC<PropsType> = (props) => {
   return (
     <div className={classes.User}>
       <div className={classes.userAvatar}>

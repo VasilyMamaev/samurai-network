@@ -3,8 +3,22 @@ import classes from './profile.module.css'
 import UserInfo from './user-info/user-info'
 import UserPostsReduxForm from './user-posts/user-posts-form'
 import likeImg from '../../assets/images/post-like.svg'
+import { userInfoType, userPostType, userInfoPhotosType } from '../../types/types'
 
-const Profile = React.memo((props) => {
+type PropsType = {
+  userInfo: userInfoType | null
+  userPosts: Array<userPostType>
+  newPostText: string
+  userStatus: string
+  iserId: number | null
+  isAuth: boolean
+  newPostHandler: (textPost: string) => void
+  updateStatus: (status: string) => void
+  saveAvatarImg: (img: userInfoPhotosType) => void
+  updateUserContacts: (formData: any) => void
+}
+
+const Profile = React.memo((props: PropsType) => {
   let Posts = props.userPosts.map((post, i) => {
   return <div key={i} className={classes.userPosts}>
           <div>{ post.message }</div>

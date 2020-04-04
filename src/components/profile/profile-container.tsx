@@ -3,10 +3,36 @@ import { getProfileTC, getStatusTC, updateStatusTC, saveAvatarImgTC, saveUserCon
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-//import withUserAuth from '../../hoc/with-user-auth'
 import { compose } from 'redux'
+import { userPostType, userInfoType, userInfoPhotosType } from '../../types/types'
+import { appStateType } from '../../redux/redux-store'
 
-class ProfileContainer extends Component {
+type MapStatePropsType = {
+  userId: number | null
+  isAuth: boolean
+  userPosts: Array<userPostType>
+  userInfo: userInfoType | null
+  newPostText: string
+  userStatus: string
+}
+
+type MapDispatchPropsType = {
+  newPostHandler: (textPost: string) => void
+  getProfile: (userInfo: userInfoType) => void
+  getStatus: (userId: number) => void
+  updateStatus: (status: string) => void
+  saveAvatarImg: (img: userInfoPhotosType) => void
+  updateUserContacts: (formData: any) => void
+}
+
+type OwnPropsType = {
+  match: any 
+  history: any
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+class ProfileContainer extends Component<PropsType> {
 
   refreshProfile() {
     let userId = this.props.match.params.userId
@@ -24,7 +50,7 @@ class ProfileContainer extends Component {
     this.refreshProfile()
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: PropsType) {
     if(prevProps.match.params.userId !== this.props.match.params.userId) {
       this.refreshProfile()
     }
@@ -36,7 +62,7 @@ class ProfileContainer extends Component {
         userInfo = {this.props.userInfo}
         userPosts = {this.props.userPosts}
         newPostText = {this.props.newPostText}
-        textChangeHandler = {this.props.textChangeHandler}
+        //textChangeHandler = {this.props.textChangeHandler}
         newPostHandler = {this.props.newPostHandler}
         userStatus = {this.props.userStatus}
         updateStatus = {this.props.updateStatus}
@@ -49,7 +75,7 @@ class ProfileContainer extends Component {
   }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: appStateType): MapStatePropsType => {
   return {
     userId: state.auth.userId,
     isAuth: state.auth.isAuth,
@@ -86,5 +112,4 @@ let mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withRouter,
- // withUserAuth
 ) (ProfileContainer)

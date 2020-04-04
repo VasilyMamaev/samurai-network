@@ -109,7 +109,7 @@ export const isFollowTogglerAC = (isFetching: boolean, userId: number): isFollow
   userId
 })
 
-export const getUsersTC = (usersAtPageCount, currentPage, pagePortion) => {
+export const getUsersTC = (usersAtPageCount: number, currentPage: number, pagePortion: number) => {
   return (dispatch) => {
     dispatch(isFetchingTogglerAC(true))
     dispatch(changePageAC(currentPage, pagePortion))
@@ -120,7 +120,7 @@ export const getUsersTC = (usersAtPageCount, currentPage, pagePortion) => {
   }
 }
 
-export const toggleFollowTC = (id, followed) => {
+export const toggleFollowTC = (id: number, followed: boolean) => {
   return (dispatch) => {
     dispatch(isFollowTogglerAC(true, id))
     followed ? usersAPI.unfollowUser(id)

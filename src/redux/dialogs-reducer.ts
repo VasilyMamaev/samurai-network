@@ -1,16 +1,13 @@
+import { dialogType } from "../types/types"
+
 const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
 const ADD_MESSAGE = 'ADD-MESSAGE'
-
-type dialogType = {
-  id: number
-  name: string 
-}
 
 const initialState = {
   dialogsElements: [
     {id: 1, name: 'dima'},
     {id: 2, name: 'sema'},
-    {id: 3, name: 'lucy'},
+    {id: 3, name: 'tonya'},
     {id: 4, name: 'kolya'},
     {id: 5, name: 'zhora'},
   ] as Array<dialogType>,
@@ -25,7 +22,7 @@ const initialState = {
 
 type stateType = typeof initialState
 
-let dialogsReducer = (state = initialState, action: any) => {
+let dialogsReducer = (state = initialState, action: any): stateType => {
   switch (action.type) {
     case 'UPDATE-MESSAGE-TEXT':
       let stateCopy = {...state}
@@ -44,13 +41,16 @@ let dialogsReducer = (state = initialState, action: any) => {
   }
 }
 
-export const updateMessageTextActionCreator = (text: string) => ({type:UPDATE_MESSAGE_TEXT, text})
+export type updateMessageTextACType = {
+  type: typeof UPDATE_MESSAGE_TEXT
+  text: string
+}
+export const updateMessageTextAC = (text: string): updateMessageTextACType => ({type:UPDATE_MESSAGE_TEXT, text})
 
-type addMessageACType = {
+export type addMessageACType = {
   type: typeof ADD_MESSAGE
   text: string
 }
-
 export const addMessageAC = (text: string): addMessageACType => ({type:ADD_MESSAGE, text})
 
 export default dialogsReducer

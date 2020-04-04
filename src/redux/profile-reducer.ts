@@ -15,7 +15,8 @@ const initialState = {
     {id: 1, message: 'Шёл сегодня с работы домой, на улице темнотища, иду с фонариком. Смотрю, впереди на снегу необычные образования. Пригляделся - следы :) По свежевыпавшему пушистому снегу прошлись, а потом ветер выдул весь снег, оставив только спрессованные ногами следы от ботинок. Впервые такое вижу.',likesCount: 99},
     {id: 2, message: 'Как-то стороной обходили Поль Бейкери, а оказывается там весьма неплохо.',likesCount: 9}
   ] as Array<userPostType>,
-  userStatus: ''
+  userStatus: '',
+  newPostText: ''
 }
 
 type stateType = typeof initialState
@@ -124,7 +125,7 @@ export let setUserContactsAC = (formData: userInfoType): setUserContactsACType =
   formData
 })
 
-export let getProfileTC = (userId) => {
+export let getProfileTC = (userId: number) => {
   return (dispatch) => {
     usersAPI.getProfile(userId).then((response) => {
       dispatch(setProfileAC(response))    

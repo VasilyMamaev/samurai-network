@@ -1,7 +1,16 @@
 import React, { useState } from 'react'
 import classes from './paginator.module.css'
 
-const Paginator = React.memo(({totalCount, usersAtPageCount, currentPage, onPageClick, portionSize, pagePortion}) => {
+type PropsType = {
+  totalCount: number
+  usersAtPageCount: number
+  currentPage: number
+  onPageClick: (page: number, portionNumber: number) => void
+  portionSize?: number
+  pagePortion: number
+}
+
+const Paginator: React.FC<PropsType> = React.memo(({totalCount, usersAtPageCount, currentPage, onPageClick, portionSize = 10, pagePortion}) => {
   
   let pagesCount = Math.ceil(totalCount / usersAtPageCount)
   let pages = []

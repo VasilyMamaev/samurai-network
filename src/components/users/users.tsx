@@ -4,9 +4,21 @@ import classes from './users.module.css'
 import User from './user/user'
 import Loader from '../ui/loader/loader'
 import Paginator from '../ui/paginator/paginator'
+import { userType } from '../../types/types'
 
+type PropsType = {
+  users: Array<userType>
+  totalCount: number
+  usersAtPageCount: number
+  currentPage: number
+  onPageClick: (page: number, pagePortion: number) => void
+  isFetching: boolean
+  followHandler: (id: number, followed: boolean) => void
+  followInProgress: Array<number>
+  pagePortion: number
+}
 
-function Users(props) {
+const Users: React.FC<PropsType> = (props) => {
 
   return (
     <div className={classes.Users}>

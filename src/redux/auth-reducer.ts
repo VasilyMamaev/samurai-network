@@ -5,7 +5,7 @@ const SET_USER_DATA = 'SET_USER_DATA'
 const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS'
 
 type stateType = {
-  userId: string | null
+  userId: number | null
   email: string | null
   login: string | null
   isAuth: boolean
