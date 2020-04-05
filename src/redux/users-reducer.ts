@@ -1,5 +1,7 @@
+import { AppStateType } from './redux-store';
 import { userType } from './../types/types';
 import { usersAPI } from "../api/api"
+import { ThunkAction } from 'redux-thunk';
 
 const FOLLOW = 'FOLLOW'
 const ADD_PAGE = 'ADD_PAGE'
@@ -19,7 +21,7 @@ const initialState = {
 
 type stateType = typeof initialState
 
-let usersReducer = (state = initialState, action: any): stateType => {
+let usersReducer = (state = initialState, action: UsersActionsTypes): stateType => {
   switch (action.type) {
     case 'ADD_PAGE':
       return {
@@ -58,6 +60,8 @@ let usersReducer = (state = initialState, action: any): stateType => {
       return state
   }
 }
+
+type UsersActionsTypes = followACType | changePageACType | changePageUsersACType | isFetchingTogglerACType | isFollowTogglerACType
 
 type followACType = {
   type: typeof FOLLOW
@@ -109,23 +113,25 @@ export const isFollowTogglerAC = (isFetching: boolean, userId: number): isFollow
   userId
 })
 
-export const getUsersTC = (usersAtPageCount: number, currentPage: number, pagePortion: number) => {
+type UsersThunkType = ThunkAction<void, AppStateType, unknown, UsersActionsTypes>
+
+export const getUsersTC = (usersAtPageCount: number, currentPage: number, pagePortion: number): UsersThunkType => {
   return (dispatch) => {
     dispatch(isFetchingTogglerAC(true))
     dispatch(changePageAC(currentPage, pagePortion))
-    usersAPI.getUsers(usersAtPageCount, currentPage).then((data) => {
+    usersAPI.getUsers(usersAtPageCount, currentPage).then((data: any) => {
       dispatch(changePageUsersAC(data.items, data.totalCount))
       dispatch(isFetchingTogglerAC(false))
     })
   }
 }
 
-export const toggleFollowTC = (id: number, followed: boolean) => {
+export const toggleFollowTC = (id: number, followed: boolean): UsersThunkType => {
   return (dispatch) => {
     dispatch(isFollowTogglerAC(true, id))
     followed ? usersAPI.unfollowUser(id)
     : usersAPI.followUser(id)
-    .then((resultCode) => {
+    .then((resultCode: number) => {
       if (resultCode === 0) {
         dispatch(isFollowTogglerAC(false, id))
         dispatch(followAC(id, followed))

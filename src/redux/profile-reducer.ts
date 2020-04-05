@@ -1,6 +1,8 @@
 import { usersAPI, userProfileAPI } from "../api/api"
 import { stopSubmit } from "redux-form"
 import { userInfoType, userPostType, userInfoPhotosType } from "../types/types"
+import { ThunkAction } from "redux-thunk"
+import { AppStateType } from "./redux-store"
 
 const ADD_POST = 'ADD-POST'
 const DELETE_POST = 'DELETE_POST'
@@ -21,7 +23,7 @@ const initialState = {
 
 type stateType = typeof initialState
 
-let profileReducer = (state = initialState, action: any):stateType => {
+let profileReducer = (state = initialState, action: ProfileActionsTypes):stateType => {
   switch (action.type) {
     case 'SET_PROFILE': 
       return {
@@ -70,6 +72,8 @@ let profileReducer = (state = initialState, action: any):stateType => {
       return state
   }
 }
+
+type ProfileActionsTypes = addPostACType | deletePostACType | setProfileACType | setStatusACType | saveAvatarImgSuccessACType | setUserContactsACType
 
 type addPostACType = {
   type: typeof ADD_POST
@@ -125,7 +129,9 @@ export let setUserContactsAC = (formData: userInfoType): setUserContactsACType =
   formData
 })
 
-export let getProfileTC = (userId: number) => {
+type ProfileThunkType = ThunkAction<void, AppStateType, unknown, ProfileActionsTypes>
+
+export let getProfileTC = (userId: number): ProfileThunkType => {
   return (dispatch) => {
     usersAPI.getProfile(userId).then((response) => {
       dispatch(setProfileAC(response))    
@@ -133,7 +139,7 @@ export let getProfileTC = (userId: number) => {
   }
 }
 
-export let getStatusTC = (userId) => {
+export let getStatusTC = (userId: number): ProfileThunkType => {
   return (dispatch) => {
     userProfileAPI.getStatus(userId).then((response) => {
       dispatch(setStatusAC(response))
@@ -141,7 +147,7 @@ export let getStatusTC = (userId) => {
   }
 }
 
-export let updateStatusTC = (status) => {
+export let updateStatusTC = (status: string): ProfileThunkType => {
   return (dispatch) => {
     userProfileAPI.updateStatus(status).then(() => {
       dispatch(setStatusAC(status))
@@ -149,7 +155,7 @@ export let updateStatusTC = (status) => {
   }
 }
 
-export let saveAvatarImgTC = (img) => async (dispatch) => {
+export let saveAvatarImgTC = (img: string): ProfileThunkType => async (dispatch) => {
     let response = await userProfileAPI.saveAvatarImg(img)
 
     if(response.data.resultCode === 0) {
@@ -157,7 +163,7 @@ export let saveAvatarImgTC = (img) => async (dispatch) => {
     }
   }
 
-export let saveUserContactsTC = (formData) => async (dispatch) => {
+export let saveUserContactsTC = (formData: any) => async (dispatch: any) => {
   const response = await userProfileAPI.saveProfile(formData)
 
   if (response.data.resultCode === 0) {
