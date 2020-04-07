@@ -1,12 +1,15 @@
 import React from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, InjectedFormProps } from 'redux-form'
 import { Input } from '../ui/form-controls/form-controls'
 import { required, maxLengthCreator } from '../../utils/validators'
 import classes from './login-form.module.css'
+import { LoginFormValuesType } from './login'
 
 const maxLength  = maxLengthCreator(16)
 
-const LoginForm = (props) => {
+type LoginFormOwnPropsType = {captchaUrl: string | null}
+
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnPropsType> & LoginFormOwnPropsType> = (props) => {
   return (
     <div className={classes.Login}>
       <div className={classes.flamingo}>
@@ -20,9 +23,10 @@ const LoginForm = (props) => {
           <Field component={Input} validate={[required, maxLength]} placeholder='Password' name='password' type='Password'/>
         </div>
         <div className={classes.rememberMe}>
-          
-          <Field component={Input} type='checkbox' name='rememberMe' id='rememberMe'/>
-          <label for='rememberMe'>Remember me</label>
+          <label>
+            <Field component={Input} type='checkbox' name='rememberMe' id='rememberMe'/>
+            Remember me
+          </label>
         </div>
         { props.error && <span>{props.error}</span> }
 
@@ -36,6 +40,6 @@ const LoginForm = (props) => {
   )
 }
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnPropsType>({form: 'login'})(LoginForm)
 
 export default LoginReduxForm

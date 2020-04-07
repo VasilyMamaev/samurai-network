@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Users from "./users";
 import { getUsersTC, toggleFollowTC } from "../../redux/users-reducer";
 import { userType } from '../../types/types';
-import { appStateType } from '../../redux/redux-store';
+import { AppStateType } from '../../redux/redux-store';
 
 type MapStatePropsType = {
   users: Array<userType>
@@ -51,7 +51,7 @@ class UsersContainer extends Component<PropsType> {
   }
 }
 
-let mapStateToProps = (state: appStateType): MapStatePropsType => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
  return {
   users: state.users.users,
   totalCount: state.users.totalCount,
@@ -64,5 +64,5 @@ let mapStateToProps = (state: appStateType): MapStatePropsType => {
 }
 
 
-export default connect<MapStatePropsType, MapDispatchPropsType, {}, appStateType>
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>
 (mapStateToProps, { followHandler: toggleFollowTC, getUsers: getUsersTC}) (UsersContainer)

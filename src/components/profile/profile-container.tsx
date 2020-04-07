@@ -1,11 +1,11 @@
 import Profile from './profile'
-import { getProfileTC, getStatusTC, updateStatusTC, saveAvatarImgTC, saveUserContactsTC, addPostAC } from '../../redux/profile-reducer'
+import { getProfileTC, getStatusTC, updateStatusTC, saveAvatarImgTC, saveUserContactsTC, addPostAC, ProfileActionsTypes } from '../../redux/profile-reducer'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { compose } from 'redux'
+import { compose, Dispatch } from 'redux'
 import { userPostType, userInfoType, userInfoPhotosType } from '../../types/types'
-import { appStateType } from '../../redux/redux-store'
+import { AppStateType } from '../../redux/redux-store'
 
 type MapStatePropsType = {
   userId: number | null
@@ -18,7 +18,7 @@ type MapStatePropsType = {
 
 type MapDispatchPropsType = {
   newPostHandler: (textPost: string) => void
-  getProfile: (userInfo: userInfoType) => void
+  getProfile: (userID: number| null) => void
   getStatus: (userId: number) => void
   updateStatus: (status: string) => void
   saveAvatarImg: (img: userInfoPhotosType) => void
@@ -75,7 +75,7 @@ class ProfileContainer extends Component<PropsType> {
   }
 }
 
-let mapStateToProps = (state: appStateType): MapStatePropsType => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     userId: state.auth.userId,
     isAuth: state.auth.isAuth,
@@ -86,13 +86,13 @@ let mapStateToProps = (state: appStateType): MapStatePropsType => {
   }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch: Dispatch<ProfileActionsTypes>): MapDispatchPropsType => {
   return {
     newPostHandler: (textPost) => {
       dispatch(addPostAC(textPost))
     },
-    getProfile: (userInfo) => {
-      dispatch(getProfileTC(userInfo))
+    getProfile: (userId) => {
+      dispatch(getProfileTC(userId))
     },
     getStatus: (userId) => {
       dispatch(getStatusTC(userId))

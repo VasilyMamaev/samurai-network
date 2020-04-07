@@ -73,9 +73,9 @@ let profileReducer = (state = initialState, action: ProfileActionsTypes):stateTy
   }
 }
 
-type ProfileActionsTypes = addPostACType | deletePostACType | setProfileACType | setStatusACType | saveAvatarImgSuccessACType | setUserContactsACType
+export type ProfileActionsTypes = addPostACType | deletePostACType | setProfileACType | setStatusACType | saveAvatarImgSuccessACType | setUserContactsACType
 
-type addPostACType = {
+export type addPostACType = {
   type: typeof ADD_POST
   textPost: string
 }
@@ -129,38 +129,29 @@ export let setUserContactsAC = (formData: userInfoType): setUserContactsACType =
   formData
 })
 
-type ProfileThunkType = ThunkAction<void, AppStateType, unknown, ProfileActionsTypes>
+type ProfileThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ProfileActionsTypes>
 
-export let getProfileTC = (userId: number): ProfileThunkType => {
-  return (dispatch) => {
-    usersAPI.getProfile(userId).then((response) => {
-      dispatch(setProfileAC(response))    
-    })
-  }
+export let getProfileTC = (userId: number): ProfileThunkType => async (dispatch) => {
+  let response = await usersAPI.getProfile(userId)
+  dispatch(setProfileAC(response))
 }
 
-export let getStatusTC = (userId: number): ProfileThunkType => {
-  return (dispatch) => {
-    userProfileAPI.getStatus(userId).then((response) => {
-      dispatch(setStatusAC(response))
-    })
-  }
+export let getStatusTC = (userId: number): ProfileThunkType => async (dispatch) => {
+  let response = await userProfileAPI.getStatus(userId)
+  dispatch(setStatusAC(response))
 }
 
-export let updateStatusTC = (status: string): ProfileThunkType => {
-  return (dispatch) => {
-    userProfileAPI.updateStatus(status).then(() => {
-      dispatch(setStatusAC(status))
-    })
-  }
+export let updateStatusTC = (status: string): ProfileThunkType => async (dispatch) => {
+  await userProfileAPI.updateStatus(status)
+  dispatch(setStatusAC(status))
 }
 
 export let saveAvatarImgTC = (img: string): ProfileThunkType => async (dispatch) => {
-    let response = await userProfileAPI.saveAvatarImg(img)
+  let response = await userProfileAPI.saveAvatarImg(img)
 
-    if(response.data.resultCode === 0) {
-      dispatch(saveAvatarImgSuccessAC(response.data.data.photos))
-    }
+  if(response.data.resultCode === 0) {
+    dispatch(saveAvatarImgSuccessAC(response.data.data.photos))
+  }
   }
 
 export let saveUserContactsTC = (formData: any) => async (dispatch: any) => {

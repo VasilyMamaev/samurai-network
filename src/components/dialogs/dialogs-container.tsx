@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import withUserAuth from '../../hoc/with-user-auth'
 import { compose } from 'redux'
 import { dialogType } from '../../types/types'
-import { appStateType } from '../../redux/redux-store'
 import { Dispatch } from 'react'
+import { AppStateType } from '../../redux/redux-store'
 
 type MapStatePropsType = {
   dialogsElements: Array<dialogType>
@@ -18,7 +18,7 @@ type MapDispatchPropsType = {
   sendMessageHandler: (values: any) => void
 }
 
-let mapStateToProps = (state: appStateType): MapStatePropsType => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     dialogsElements: state.dialogs.dialogsElements,
     messages: state.dialogs.messages,
